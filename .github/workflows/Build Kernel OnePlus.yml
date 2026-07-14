@@ -423,7 +423,7 @@ jobs:
           git config --global user.name "Focus0x0"
           git config --global user.email "2603701763@qq.com"
           mkdir kernel_workspace && cd kernel_workspace
-          git clone --depth 1 https://github.com/Focus0x0/Action-Build.git -b ReSukiSU-11
+          git clone --depth 10 --depth 1 https://github.com/Focus0x0/Action-Build.git -b ReSukiSU-11
 
       - name: check repo
         run: |
@@ -773,7 +773,7 @@ jobs:
           cd kernel_workspace
           if [ "${{ github.event.inputs.SUSFS_META }}" != "-1" ]; then
             SUSFS_META="${{ github.event.inputs.SUSFS_META }}"
-            git clone https://gitlab.com/simonpunk/susfs4ksu.git -b gki-${{ env.KANDROID_VERSION }}-${{ env.KERNEL_VERSION }}${{ github.event.inputs.SUSFS_DEV == 'true' && '-dev' || '' }}
+            git clone --depth 10 https://gitlab.com/simonpunk/susfs4ksu.git -b gki-${{ env.KANDROID_VERSION }}-${{ env.KERNEL_VERSION }}${{ github.event.inputs.SUSFS_DEV == 'true' && '-dev' || '' }}
             cd susfs4ksu
             if [ -n "$SUSFS_META" ]; then
               if [[ "$SUSFS_META" =~ ^[0-9]+$ ]]; then
@@ -787,12 +787,12 @@ jobs:
             cd ..
           fi
           if [ "${{ github.event.inputs.RE_KERNEL }}" = "true" ]; then
-            git clone https://github.com/Sakion-Team/Re-Kernel.git
+            git clone --depth 10 https://github.com/Sakion-Team/Re-Kernel.git
           fi
           if [ "${{ github.event.inputs.LZ4_UPDATE }}" = "true" ]; then
-            git clone https://github.com/Numbersf/lz4_oplus.git
+            git clone --depth 10 https://github.com/Numbersf/lz4_oplus.git
           fi
-          git clone https://github.com/ShirkNeko/SukiSU_patch.git
+          git clone --depth 10 https://github.com/ShirkNeko/SukiSU_patch.git
           cd kernel_platform
           if [ "${{ github.event.inputs.SUSFS_META }}" != "-1" ]; then
             echo "正在拉取susfs补丁"
@@ -983,7 +983,7 @@ jobs:
               exit 0
             }
           done
-          git clone https://github.com/Numbersf/SCHED_PATCH.git -b $CPU || { echo "❌ CPU 分支不存在，风驰内核暂未支持你的机型，请关闭后重试"; exit 11; }
+          git clone --depth 10 https://github.com/Numbersf/SCHED_PATCH.git -b $CPU || { echo "❌ CPU 分支不存在，风驰内核暂未支持你的机型，请关闭后重试"; exit 11; }
           echo "正在拉取风驰补丁"
           cp ./SCHED_PATCH/fengchi_${CLEAN_FILE}.patch ./
           if [[ -f "fengchi_${CLEAN_FILE}.patch" ]]; then
@@ -1415,7 +1415,7 @@ jobs:
 
       - name: Make AnyKernel3
         run: |
-          git clone https://github.com/Numbersf/AnyKernel3 --depth=1
+          git clone --depth 10 https://github.com/Numbersf/AnyKernel3 --depth=1
           rm -rf ./AnyKernel3/.git
           mkdir -p kernel_workspace/kernel_platform/out/Final-Image-Find/
           image_path=""
