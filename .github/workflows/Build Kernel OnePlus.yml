@@ -427,11 +427,12 @@ jobs:
 
       - name: check repo
         run: |
-          PATCH_DIR="$GITHUB_WORKSPACE/kernel_workspace/Action-Build"
+          PATCH_DIR="$GITHUB_WORKSPACE/kernel_workspace/Action-Build/patches"
           echo "当前"
           pwd
           ls -alh
           ls -alh $PATCH_DIR
+          cat $PATCH_DIR/IPv6_NAT_FIX.patch
 
       - name: Fork Check
         run: |
