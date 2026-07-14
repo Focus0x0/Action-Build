@@ -420,10 +420,10 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.name "Numbersf"
-          git config --global user.email "263623064@qq.com"
+          git config --global user.name "Focus0x0"
+          git config --global user.email "2603701763@qq.com"
           mkdir kernel_workspace && cd kernel_workspace
-          git clone https://github.com/Numbersf/Action-Build.git -b ReSukiSU
+          git clone https://github.com/Focus0x0/Action-Build.git -b ReSukiSU-11
 
       - name: check repo
         run: |
