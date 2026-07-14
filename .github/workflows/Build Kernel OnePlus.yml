@@ -423,7 +423,7 @@ jobs:
           git config --global user.name "Focus0x0"
           git config --global user.email "2603701763@qq.com"
           mkdir kernel_workspace && cd kernel_workspace
-          git clone https://github.com/Focus0x0/Action-Build.git -b ReSukiSU-11
+          git clone --depth 1 https://github.com/Focus0x0/Action-Build.git -b ReSukiSU-11
 
       - name: check repo
         run: |
@@ -434,13 +434,13 @@ jobs:
           ls -alh $PATCH_DIR
           cat $PATCH_DIR/IPv6_NAT_FIX.patch
 
-      - name: Fork Check
-        run: |
-          repo="${{ github.repository }}"; json=$(curl -s "https://api.github.com/repos/$repo")
-          parent=$(echo "$json" | grep -o '"full_name": *"[^"]*"' | head -n 2 | tail -n 1 | sed 's/.*"full_name": *"\([^"]*\)".*/\1/')
-          if [ -n "$parent" ] && [ "$parent" != "Numbersf/Action-Build" ]; then
-            echo "::warning title=Source Warning::您使用的内核编译地址为非官方源，可能导致运行失败或内核异常。"
-          fi
+#      - name: Fork Check
+#        run: |
+#          repo="${{ github.repository }}"; json=$(curl -s "https://api.github.com/repos/$repo")
+#          parent=$(echo "$json" | grep -o '"full_name": *"[^"]*"' | head -n 2 | tail -n 1 | sed 's/.*"full_name": *"\([^"]*\)".*/\1/')
+#          if [ -n "$parent" ] && [ "$parent" != "Numbersf/Action-Build" ]; then
+#            echo "::warning title=Source Warning::您使用的内核编译地址为非官方源，可能导致运行失败或内核异常。"
+#          fi
 
       - name: Reject Check
         run: |
