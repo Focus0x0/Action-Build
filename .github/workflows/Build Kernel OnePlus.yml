@@ -200,6 +200,14 @@ jobs:
           remove-haskell: 'true'
           remove-codeql: 'true'
 
+      - name: check repo
+        run: |
+          PATCH_DIR="${GITHUB_WORKSPACE}/kernel_workspace/Action-Build/patches"
+          echo "当前"
+          pwd
+          ls -alh
+          ls -alh $PATCH_DIR
+
       - name: Extract Manifest Info
         id: extract_info
         env:
